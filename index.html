@@ -1,0 +1,917 @@
+<html><head><base href="https://chatgpt.com/" >
+<meta charset="UTF-8">
+<title>Formulário de Investigação de Acidentes do Trabalho</title>
+<style>
+:root {
+  --primary: #2C3E50;
+  --secondary: #3498DB;
+  --success: #27AE60;
+  --warning: #F39C12;
+  --danger: #E74C3C;
+  --light: #ECF0F1;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 20px;
+  background: var(--light);
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header {
+  background: linear-gradient(135deg, #E3F2FD 0%, #90CAF9 100%);
+  padding: 30px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    rgba(255,255,255,0.2) 25%, 
+    transparent 25%, 
+    transparent 50%, 
+    rgba(255,255,255,0.2) 50%, 
+    rgba(255,255,255,0.2) 75%, 
+    transparent 75%, 
+    transparent);
+  background-size: 30px 30px;
+  animation: moveStripes 3s linear infinite;
+  opacity: 0.3;
+}
+
+.header h1 {
+  color: #1565C0;
+  margin: 0;
+  font-size: 2.2em;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+  border: none;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes moveStripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 30px 30px;
+  }
+}
+
+.form-section {
+  margin-bottom: 25px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-section h2 {
+  color: var(--secondary);
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+button {
+  background: var(--success);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #219a52;
+}
+
+.required::after {
+  content: "*";
+  color: var(--danger);
+  margin-left: 4px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
+  }
+
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .checkbox-group {
+    flex-direction: column;
+  }
+
+  .date-inputs {
+    flex-direction: column;
+  }
+}
+
+.success-message {
+  display: none;
+  background: var(--success);
+  color: white;
+  padding: 15px;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.photo-section {
+  margin-top: 20px;
+}
+
+.photo-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.preview-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 2px solid var(--secondary);
+}
+
+.photo-input {
+  display: none;
+}
+
+.photo-button {
+  background: var(--secondary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+  margin-right: 10px;
+}
+
+.photo-button:hover {
+  background: #2980b9;
+}
+
+.team-member {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.team-member input {
+  flex: 1;
+}
+
+.remove-member {
+  background: var(--danger);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-member {
+  background: var(--secondary);
+  margin-bottom: 20px;
+}
+
+.ishikawa-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.ishikawa-section .form-group {
+0;
+}
+
+.ishikawa-section textarea {
+  height: 80px;
+}
+
+@media (max-width: 768px) {
+  .ishikawa-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ishikawa-section textarea::placeholder {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+.form-section .form-group:not(.ishikawa-section .form-group) textarea {
+  margin-bottom: 20px;
+}
+
+.form-section textarea[name="causa_principal"] {
+  height: 100px;
+  background-color: #f8f9fa;
+  border: 1px solid var(--secondary);
+}
+
+.form-section textarea[name="causa_principal"]:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.1);
+}
+
+.date-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+.date-inputs input {
+  flex: 1;
+}
+
+.form-section textarea {
+  min-height: 60px;
+}
+
+@media (max-width: 600px) {
+  .date-inputs {
+    flex-direction: column;
+  }
+}
+
+.form-section textarea[name^="why"] {
+  min-height: 60px;
+  background-color: #f8f9fa;
+  margin-bottom: 15px;
+}
+
+.form-section textarea[name="root_cause"] {
+  min-height: 80px;
+  background-color: #f8f9fa;
+  border: 1px solid var(--secondary);
+}
+
+.form-section textarea[name="root_cause"]:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.1);
+}
+
+.export-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.export-button {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.export-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+}
+
+.export-button svg {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+.export-button:hover svg {
+  transform: scale(1.1);
+}
+
+.risk-level {
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.risk-extreme {
+  background-color: #FF0000;
+  color: white;
+}
+
+.risk-high {
+  background-color: #FF6B00;
+  color: white;
+}
+
+.risk-medium {
+  background-color: #FFD700;
+  color: black;
+}
+
+.risk-low {
+  background-color: #00FF00;
+  color: black;
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>Formulário de Investigação de Acidentes do Trabalho</h1>
+  </div>
+  
+  <form id="accidentForm">
+    <div class="form-section">
+      <h2>Tipo de Acidente</h2>
+      <div class="checkbox-group">
+        <div class="checkbox-item">
+          <input type="checkbox" name="tipo" value="sem_afastamento">
+          <label>Sem Afastamento</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" name="tipo" value="com_afastamento">
+          <label>Com Afastamento</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" name="tipo" value="acidente_material">
+          <label>Acidente Material</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" name="tipo" value="primeiros_socorros">
+          <label>Primeiros Socorros</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" name="tipo" value="alto_potencial">
+          <label>Alto Potencial</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" name="tipo" value="fatal">
+          <label>Fatal</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" name="tipo" value="acidente_trajeto">
+          <label>Acidente de Trajeto</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" name="tipo" value="quase_acidente">
+          <label>Quase Acidente</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" name="tipo" value="acidente_ambiental">
+          <label>Acidente Ambiental</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Classificação do Risco (Matriz AIHA)</h2>
+      <div class="form-group">
+        <label class="required">Severidade:</label>
+        <select name="severidade" required>
+          <option value="">Selecione a severidade</option>
+          <option value="catastrofico">Catastrófico (4) - Morte ou incapacidade permanente</option>
+          <option value="critico">Crítico (3) - Lesão grave ou doença ocupacional</option>
+          <option value="marginal">Marginal (2) - Lesão ou doença leve</option>
+          <option value="desprezivel">Desprezível (1) - Sem lesão ou doença</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="required">Probabilidade:</label>
+        <select name="probabilidade" required>
+          <option value="">Selecione a probabilidade</option>
+          <option value="frequente">Frequente (4) - Provável ocorrência imediata</option>
+          <option value="provavel">Provável (3) - Provável em curto prazo</option>
+          <option value="ocasional">Ocasional (2) - Possível ocorrência</option>
+          <option value="remoto">Remoto (1) - Improvável ocorrência</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="required">Nível de Risco:</label>
+        <div id="nivelRisco" class="risk-level">
+          Selecione a severidade e probabilidade para calcular o nível de risco
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Informações do Acidentado</h2>
+      <div class="form-group">
+        <label class="required">Nome Completo:</label>
+        <input type="text" name="nome" required>
+      </div>
+      
+      <div class="form-group">
+        <label class="required">Idade:</label>
+        <input type="number" name="idade" min="14" max="100" required>
+      </div>
+      
+      <div class="form-group">
+        <label class="required">Cargo/Função:</label>
+        <input type="text" name="cargo" required>
+      </div>
+      
+      <div class="form-group">
+        <label class="required">Tempo na Função:</label>
+        <input type="number" name="tempoFuncao" min="0" placeholder="Tempo em meses" required>
+      </div>
+
+      <div class="form-group">
+        <label class="required">Data de Admissão:</label>
+        <input type="date" name="dataAdmissao" required>
+      </div>
+      
+      <div class="form-group">
+        <label class="required">Departamento:</label>
+        <input type="text" name="departamento" required>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Detalhes do Acidente</h2>
+      <div class="form-group">
+        <label class="required">Data do Acidente:</label>
+        <input type="date" name="data" required>
+      </div>
+      
+      <div class="form-group">
+        <label class="required">Hora do Acidente:</label>
+        <input type="time" name="hora" required>
+      </div>
+      
+      <div class="form-group">
+        <label class="required">Local do Acidente:</label>
+        <input type="text" name="local" required>
+      </div>
+      
+      <div class="form-group">
+        <label class="required">Descrição Detalhada do Acidente:</label>
+        <textarea name="descricao" required></textarea>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Medidas Preventivas</h2>
+      <div class="form-group">
+        <label>Ações Imediatas Tomadas:</label>
+        <textarea name="acoes"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>Recomendações para Prevenção:</label>
+        <textarea name="recomendacoes"></textarea>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Fotos do Acidente</h2>
+      <div class="form-group">
+        <input type="file" id="photoInput" class="photo-input" accept="image/*" multiple>
+        <button type="button" class="photo-button" onclick="document.getElementById('photoInput').click()">
+          Adicionar Fotos
+        </button>
+        <span id="photoCount"></span>
+      </div>
+      <div id="photoPreview" class="photo-preview"></div>
+    </div>
+
+    <div class="form-section">
+      <h2>Equipe de Investigação</h2>
+      <div id="teamMembers">
+        <div class="team-member">
+          <input type="text" placeholder="Nome do membro da equipe" required>
+          <input type="text" placeholder="Cargo/Função" required>
+          <button type="button" class="remove-member" onclick="removeMember(this)">Remover</button>
+        </div>
+      </div>
+      <button type="button" class="photo-button add-member" onclick="addTeamMember()">
+        Adicionar Membro da Equipe
+      </button>
+    </div>
+
+    <div class="form-section">
+      <h2>Análise de Diagrama de Ishikawa (Diagrama Espinha de Peixe)</h2>
+      
+      <div class="form-group">
+        <label class="required">Causa Principal da Ocorrência:</label>
+        <textarea name="causa_principal" placeholder="Descreva a causa raiz identificada após análise" required></textarea>
+      </div>
+      
+      <div class="ishikawa-section">
+        <div class="form-group">
+          <label>Mão de Obra (Man):</label>
+          <textarea name="ishikawa_man" placeholder="Fatores relacionados às pessoas envolvidas (ex: treinamento, fadiga, experiência)"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>Máquina (Machine):</label>
+          <textarea name="ishikawa_machine" placeholder="Fatores relacionados a equipamentos e máquinas (ex: manutenção, condições, falhas)"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>Método (Method):</label>
+          <textarea name="ishikawa_method" placeholder="Fatores relacionados aos procedimentos e métodos de trabalho"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>Material:</label>
+          <textarea name="ishikawa_material" placeholder="Fatores relacionados aos materiais utilizados"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>Medição (Measurement):</label>
+          <textarea name="ishikawa_measurement" placeholder="Fatores relacionados a indicadores e medições"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>Meio Ambiente (Environment):</label>
+          <textarea name="ishikawa_environment" placeholder="Fatores relacionados ao ambiente de trabalho"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Análise dos 5 Por Quês</h2>
+      
+      <div class="form-group">
+        <label>1º Por quê? (Problema inicial)</label>
+        <textarea name="why1" placeholder="Por que o acidente aconteceu? Descreva o problema inicial."></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>2º Por quê?</label>
+        <textarea name="why2" placeholder="Por que isso aconteceu? (Aprofunde a análise do primeiro por quê)"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>3º Por quê?</label>
+        <textarea name="why3" placeholder="Por que isso aconteceu? (Continue aprofundando a análise)"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>4º Por quê?</label>
+        <textarea name="why4" placeholder="Por que isso aconteceu? (Busque causas mais profundas)"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>5º Por quê?</label>
+        <textarea name="why5" placeholder="Por que isso aconteceu? (Identifique a causa raiz)"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>Causa Raiz Identificada:</label>
+        <textarea name="root_cause" placeholder="Descreva a causa raiz identificada após a análise dos 5 por quês"></textarea>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Plano de Ação (5W2H)</h2>
+      <div class="form-group">
+        <label>What (O que será feito?):</label>
+        <textarea name="what" placeholder="Descreva a ação que será implementada"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>Why (Por que será feito?):</label>
+        <textarea name="why" placeholder="Justifique a necessidade desta ação"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>Where (Onde será feito?):</label>
+        <textarea name="where" placeholder="Local onde a ação será implementada"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>When (Quando será feito?):</label>
+        <div class="date-inputs">
+          <input type="date" name="when_start" placeholder="Data de início">
+          <input type="date" name="when_end" placeholder="Data de conclusão">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label>Who (Quem fará?):</label>
+        <textarea name="who" placeholder="Responsável(eis) pela implementação"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>How (Como será feito?):</label>
+        <textarea name="how" placeholder="Método/procedimento de implementação"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>How Much (Quanto custará?):</label>
+        <textarea name="howmuch" placeholder="Custos e recursos necessários"></textarea>
+      </div>
+    </div>
+
+    <div class="export-buttons">
+      <button type="button" class="export-button" onclick="generatePDF()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <line x1="10" y1="9" x2="8" y2="9"></line>
+        </svg>
+        Gerar PDF
+      </button>
+    </div>
+
+  </form>
+  
+  <div class="success-message" id="successMessage">
+    Relatório enviado com sucesso!
+  </div>
+</div>
+
+<script>
+const checkboxes = document.querySelectorAll('input[name="tipo"]');
+checkboxes.forEach(checkbox => {
+  checkbox.addEventListener('change', function() {
+    if (this.checked) {
+      checkboxes.forEach(cb => {
+        if (cb !== this) cb.checked = false;
+      });
+    }
+  });
+});
+
+document.getElementById('photoInput').addEventListener('change', function(e) {
+  const photoPreview = document.getElementById('photoPreview');
+  const photoCount = document.getElementById('photoCount');
+  const files = e.target.files;
+  
+  if (files.length > 0) {
+    photoCount.textContent = `${files.length} foto(s) selecionada(s)`;
+    
+    // Clear previous previews
+    photoPreview.innerHTML = '';
+    
+    // Create preview for each selected image
+    Array.from(files).forEach(file => {
+      const reader = new FileReader();
+      
+      reader.onload = function(e) {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.classList.add('preview-image');
+        img.alt = 'Preview da foto do acidente';
+        photoPreview.appendChild(img);
+      }
+      
+      reader.readAsDataURL(file);
+    });
+  } else {
+    photoCount.textContent = '';
+    photoPreview.innerHTML = '';
+  }
+});
+
+function addTeamMember() {
+  const teamMembers = document.getElementById('teamMembers');
+  const newMember = document.createElement('div');
+  newMember.className = 'team-member';
+  newMember.innerHTML = `
+    <input type="text" placeholder="Nome do membro da equipe" required>
+    <input type="text" placeholder="Cargo/Função" required>
+    <button type="button" class="remove-member" onclick="removeMember(this)">Remover</button>
+  `;
+  teamMembers.appendChild(newMember);
+}
+
+function removeMember(button) {
+  const teamMembers = document.getElementById('teamMembers');
+  const member = button.parentElement;
+  if (teamMembers.children.length > 1) {
+    teamMembers.removeChild(member);
+  }
+}
+
+function generatePDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  
+  // Set initial coordinates
+  let y = 20;
+  const leftMargin = 20;
+  const pageWidth = doc.internal.pageSize.width;
+  
+  // Helper function to add a section title
+  function addSectionTitle(title) {
+    doc.setFont(undefined, 'bold');
+    doc.setFontSize(14);
+    doc.setTextColor(44, 62, 80); // Primary color
+    doc.text(title, leftMargin, y);
+    y += 10;
+  }
+  
+  // Helper function to add field content
+  function addField(label, value) {
+    if (y > 270) {
+      doc.addPage();
+      y = 20;
+    }
+    
+    doc.setFont(undefined, 'bold');
+    doc.setFontSize(10);
+    doc.setTextColor(52, 152, 219); // Secondary color
+    doc.text(label + ":", leftMargin, y);
+    
+    doc.setFont(undefined, 'normal');
+    doc.setTextColor(0, 0, 0);
+    const valueLines = doc.splitTextToSize(value || "Não informado", pageWidth - leftMargin - 70);
+    doc.text(valueLines, leftMargin + 50, y);
+    
+    y += (valueLines.length * 6) + 4;
+  }
+
+  // Add header with logo (if needed)
+  doc.setFontSize(18);
+  doc.setFont(undefined, 'bold');
+  doc.setTextColor(44, 62, 80);
+  doc.text("Relatório de Investigação de Acidente", leftMargin, y);
+  y += 15;
+
+  // Add sections
+  addSectionTitle("Tipo de Acidente");
+  const checkedTypes = Array.from(document.querySelectorAll('input[name="tipo"]:checked'))
+    .map(cb => cb.nextElementSibling.textContent)
+    .join(", ");
+  addField("Tipo", checkedTypes);
+
+  addSectionTitle("Classificação do Risco");
+  addField("Severidade", document.querySelector('select[name="severidade"] option:checked').text);
+  addField("Probabilidade", document.querySelector('select[name="probabilidade"] option:checked').text);
+  addField("Nível de Risco", document.getElementById('nivelRisco').textContent);
+
+  addSectionTitle("Informações do Acidentado");
+  addField("Nome", document.querySelector('input[name="nome"]').value);
+  addField("Idade", document.querySelector('input[name="idade"]').value);
+  addField("Cargo", document.querySelector('input[name="cargo"]').value);
+  addField("Departamento", document.querySelector('input[name="departamento"]').value);
+
+  addSectionTitle("Detalhes do Acidente");
+  addField("Data", document.querySelector('input[name="data"]').value);
+  addField("Hora", document.querySelector('input[name="hora"]').value);
+  addField("Local", document.querySelector('input[name="local"]').value);
+  addField("Descrição", document.querySelector('textarea[name="descricao"]').value);
+
+  addSectionTitle("Análise de Causa Raiz");
+  addField("Causa Principal", document.querySelector('textarea[name="causa_principal"]').value);
+
+  addSectionTitle("Análise dos 5 Por Quês");
+  addField("1º Por quê?", document.querySelector('textarea[name="why1"]').value);
+  addField("2º Por quê?", document.querySelector('textarea[name="why2"]').value);
+  addField("3º Por quê?", document.querySelector('textarea[name="why3"]').value);
+  addField("4º Por quê?", document.querySelector('textarea[name="why4"]').value);
+  addField("5º Por quê?", document.querySelector('textarea[name="why5"]').value);
+  addField("Causa Raiz", document.querySelector('textarea[name="root_cause"]').value);
+
+  addSectionTitle("Plano de Ação (5W2H)");
+  addField("O que será feito", document.querySelector('textarea[name="what"]').value);
+  addField("Por que será feito", document.querySelector('textarea[name="why"]').value);
+  addField("Onde será feito", document.querySelector('textarea[name="where"]').value);
+  addField("Quando será feito", `${document.querySelector('input[name="when_start"]').value} até ${document.querySelector('input[name="when_end"]').value}`);
+  addField("Quem fará", document.querySelector('textarea[name="who"]').value);
+  addField("Como será feito", document.querySelector('textarea[name="how"]').value);
+  addField("Quanto custará", document.querySelector('textarea[name="howmuch"]').value);
+
+  // Save the PDF
+  doc.save('relatorio-investigacao-acidente.pdf');
+}
+
+document.querySelectorAll('select[name="severidade"], select[name="probabilidade"]').forEach(select => {
+  select.addEventListener('change', calculateRiskLevel);
+});
+
+function calculateRiskLevel() {
+  const severidade = document.querySelector('select[name="severidade"]').value;
+  const probabilidade = document.querySelector('select[name="probabilidade"]').value;
+  const nivelRiscoElement = document.getElementById('nivelRisco');
+
+  if (!severidade || !probabilidade) {
+    nivelRiscoElement.textContent = 'Selecione a severidade e probabilidade para calcular o nível de risco';
+    nivelRiscoElement.className = 'risk-level';
+    return;
+  }
+
+  const severidadeValue = {
+    'catastrofico': 4,
+    'critico': 3,
+    'marginal': 2,
+    'desprezivel': 1
+  }[severidade];
+
+  const probabilidadeValue = {
+    'frequente': 4,
+    'provavel': 3,
+    'ocasional': 2,
+    'remoto': 1
+  }[probabilidade];
+
+  const riskScore = severidadeValue * probabilidadeValue;
+
+  let riskLevel;
+  let riskClass;
+
+  if (riskScore >= 12) {
+    riskLevel = 'EXTREMO - Ação imediata requerida';
+    riskClass = 'risk-extreme';
+  } else if (riskScore >= 8) {
+    riskLevel = 'ALTO - Necessita ação prioritária';
+    riskClass = 'risk-high';
+  } else if (riskScore >= 4) {
+    riskLevel = 'MÉDIO - Necessita ação programada';
+    riskClass = 'risk-medium';
+  } else {
+    riskLevel = 'BAIXO - Manter controles existentes';
+    riskClass = 'risk-low';
+  }
+
+  nivelRiscoElement.textContent = riskLevel;
+  nivelRiscoElement.className = `risk-level ${riskClass}`;
+}
+</script>
+
+</body></html>
